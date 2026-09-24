@@ -1,259 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Shop</title>
+
+    <title>Sleepy Bean | Coffee Shop</title>
+
     <link rel="stylesheet" href="./src/output.css">
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==================== DARK MODE ==================== */
+
+        body.dark-mode {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .light-section {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode .white-section {
+            background-color: #111827 !important;
+        }
+
+        body.dark-mode .card {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode .dark-text {
+            color: #f9fafb !important;
+        }
+
+        body.dark-mode .gray-text {
+            color: #d1d5db !important;
+        }
+
+        body.dark-mode nav {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode #searchSection {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode #searchInput {
+            background-color: #1f2937;
+            color: white;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode footer {
+            background-color: #030712 !important;
+        }
+
+        /* ==================== MOBILE MENU ==================== */
+
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: flex;
+        }
+
+    </style>
+
 </head>
 
-<body>
 
-    <!-- Navbar -->
-    <nav>
-        <div>
-        <h1 class="text-4xl font-bold text-amber-700">
-    Coffee Shop
-</h1>
-        </div>
-
-        
-
-        
-    <nav class="flex items-center justify-between px-8 py-5 bg-white shadow-md">
-    
-    <!-- Logo -->
-    <div>
-        <h1 class="text-2xl font-bold text-amber-800">
-            Coffee Shop ☕
-        </h1>
-    </div>
-
-    <!-- Navigation Links -->
-    <div class="flex gap-8">
-        <a href="index.html" class="text-amber-800 font-semibold hover:text-amber-600 transition">
-            Home
-        </a>
-
-        <a href="menu.html" class="text-gray-700 hover:text-amber-600 transition">
-            Menu
-        </a>
-
-        <a href="about.html" class="text-gray-700 hover:text-amber-600 transition">
-            About
-        </a>
-
-        <a href="contact.html" class="text-gray-700 hover:text-amber-600 transition">
-            Contact
-        </a>
-    </div>
-
-    <!-- Actions -->
-    <div class="flex gap-3">
-        <button class="px-3 py-2 rounded-full hover:bg-amber-100 transition">
-            🔍
-        </button>
-
-        <button class="px-3 py-2 rounded-full hover:bg-amber-100 transition">
-            🌙
-        </button>
-    </div>
+<body class="bg-white text-gray-900">
 
 
-</nav>
-<!-- Hero Section -->
-<section class="min-h-[80vh] flex items-center justify-center px-8 bg-amber-50">
+<!-- ================================================== -->
+<!-- NAVBAR -->
+<!-- ================================================== -->
 
-    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+<nav class="sticky top-0 z-50 bg-white shadow-md transition">
 
-        <!-- Hero Text -->
-        <div>
-            <p class="text-amber-700 font-semibold mb-3">
-                Welcome to Coffee Shop ☕
-            </p>
+    <div class="max-w-7xl mx-auto px-6 py-4">
 
-            <h2 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                Start Your Day With
-                <span class="text-amber-700">Perfect Coffee</span>
-            </h2>
+        <div class="flex items-center justify-between">
 
-            <p class="text-gray-600 text-lg leading-relaxed mb-8">
-                Enjoy freshly brewed coffee made with quality beans
-                and served with love.
-            </p>
+            <!-- Logo -->
 
-            <!-- Buttons -->
-            <div class="flex flex-wrap gap-4">
+            <a href="index.html"
+               class="text-2xl md:text-3xl font-bold text-amber-800
+                      hover:text-amber-600 transition">
+
+                Sleepy Bean ☕
+
+            </a>
+
+
+            <!-- Desktop Navigation -->
+
+            <div class="hidden md:flex items-center gap-8">
+
+                <a href="index.html"
+                   class="font-semibold text-amber-700
+                          hover:text-amber-500 transition">
+
+                    Home
+
+                </a>
 
                 <a href="menu.html"
-                   class="px-6 py-3 bg-amber-700 text-white rounded-full
-                          hover:bg-amber-800 transition transform hover:scale-105">
-                    Explore Menu
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    Menu
+
                 </a>
 
                 <a href="about.html"
-                   class="px-6 py-3 border border-amber-700 text-amber-700
-                          rounded-full hover:bg-amber-700 hover:text-white
-                          transition">
-                    Learn More
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    About
+
+                </a>
+
+                <a href="contact.html"
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    Contact
+
                 </a>
 
             </div>
+
+
+            <!-- Actions -->
+
+            <div class="flex items-center gap-2">
+
+                <!-- Search -->
+
+                <button
+                    id="searchButton"
+                    aria-label="Open search"
+                    class="w-10 h-10 flex items-center justify-center
+                           rounded-full hover:bg-amber-100
+                           transition transform hover:scale-110">
+
+                    🔍
+
+                </button>
+
+
+                <!-- Dark Mode -->
+
+                <button
+                    id="themeButton"
+                    aria-label="Toggle dark mode"
+                    class="w-10 h-10 flex items-center justify-center
+                           rounded-full hover:bg-amber-100
+                           transition transform hover:scale-110">
+
+                    🌙
+
+                </button>
+
+
+                <!-- Mobile Menu -->
+
+                <button
+                    id="menuButton"
+                    aria-label="Open menu"
+                    class="md:hidden w-10 h-10 flex items-center
+                           justify-center rounded-full
+                           hover:bg-amber-100 transition">
+
+                    ☰
+
+                </button>
+
+            </div>
+
         </div>
+
+
+        <!-- Mobile Navigation -->
+
+        <div id="mobileMenu"
+             class="flex-col gap-4 mt-5 pb-4 md:hidden">
+
+            <a href="index.html"
+               class="font-semibold text-amber-700
+                      hover:text-amber-500 transition">
+
+                Home
+
+            </a>
+
+            <a href="menu.html"
+                class="text-gray-700 hover:text-amber-600 transition">
+
+                Menu
+
+            </a>
+
+            <a href="about.html"
+                class="text-gray-700 hover:text-amber-600 transition">
+
+                About
+
+            </a>
+
+            <a href="contact.html"
+                class="text-gray-700 hover:text-amber-600 transition">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================================== -->
+<!-- SEARCH -->
+<!-- ================================================== -->
+
+<section id="searchSection"
+            class="hidden bg-amber-50 py-6 px-6">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="flex flex-col sm:flex-row gap-3">
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search coffee..."
+                class="flex-1 px-5 py-3 rounded-full
+                        border border-amber-300
+                        focus:outline-none
+                        focus:ring-2
+                focus:ring-amber-500">
+
+            <button
+                id="searchSubmit"
+                class="px-6 py-3 bg-amber-700
+                        text-white rounded-full
+                        hover:bg-amber-800
+                        hover:scale-105
+                        transition">
+
+                Search
+
+            </button>
+
+        </div>
+
+        <p id="searchMessage"
+            class="text-center text-amber-700
+                    font-semibold mt-4 hidden">
+
+            No coffee found.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- HERO -->
+<!-- ================================================== -->
+
+<section class="light-section min-h-[85vh]
+                flex items-center
+                bg-amber-50 px-6 py-16 transition">
+
+    <div class="max-w-7xl mx-auto w-full
+                grid md:grid-cols-2
+                gap-12 items-center">
+
+
+        <!-- Hero Text -->
+
+        <div>
+
+            <p class="text-amber-700 font-semibold
+                        text-lg mb-4">
+
+                Welcome to Sleepy Bean ☕
+
+            </p>
+
+
+            <h1 class="dark-text text-5xl
+                        md:text-6xl lg:text-7xl
+                        font-bold leading-tight mb-6">
+
+                Start Your Day With
+
+                <span class="text-amber-700 block">
+
+                    Perfect Coffee
+
+                </span>
+
+            </h1>
+
+
+            <p class="gray-text text-gray-600
+                        text-lg md:text-xl
+                        leading-relaxed
+                        max-w-xl mb-8">
+
+                Enjoy freshly brewed coffee made
+                with quality beans, delicious flavors,
+                and a warm atmosphere made for every
+                coffee lover.
+
+            </p>
+
+
+            <!-- Buttons -->
+
+            <div class="flex flex-wrap gap-4">
+
+                <a href="menu.html"
+                    class="px-7 py-3 bg-amber-700
+                            text-white rounded-full
+                            font-semibold shadow-lg
+                            hover:bg-amber-800
+                            hover:scale-105
+                            transform transition duration-300">
+
+                    Explore Menu ☕
+
+                </a>
+
+
+                <a href="about.html"
+                            class="px-7 py-3
+                            border-2 border-amber-700
+                            text-amber-700 rounded-full
+                            font-semibold
+                            hover:bg-amber-700
+                            hover:text-white
+                            hover:scale-105
+                            transform transition duration-300">
+
+                    Learn More
+
+                </a>
+
+            </div>
+
+        </div>
+
+
 
         <!-- Hero Image -->
+
         <div class="flex justify-center">
-            <img
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
-                alt="Coffee cup"
-                class="w-full max-w-md rounded-3xl shadow-2xl
-                       hover:scale-105 transition duration-500"
-            >
-        </div>
 
-    </div>
+            <div class="relative">
 
-</section>
-<!-- Popular Coffee Section -->
-<section class="py-20 px-8 bg-white">
+                <div class="absolute -inset-4
+                            bg-amber-200
+                            rounded-3xl
+                            blur-2xl opacity-40">
+                </div>
 
-    <div class="max-w-6xl mx-auto">
-
-        <!-- Section Title -->
-        <div class="text-center mb-12">
-
-            <p class="text-amber-700 font-semibold mb-2">
-                Our Favorites
-            </p>
-
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                Popular Coffee
-            </h2>
-
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                Discover some of our most loved coffee drinks,
-                freshly prepared just for you.
-            </p>
-
-        </div>
-
-
-        <!-- Coffee Cards -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Card 1 -->
-            <div class="bg-amber-50 rounded-3xl overflow-hidden shadow-lg
-                        hover:-translate-y-2 transition duration-300">
 
                 <img
-                    src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
-                    alt="Espresso"
-                    class="w-full h-56 object-cover"
-                >
-
-                <div class="p-6">
-
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                        Espresso
-                    </h3>
-
-                    <p class="text-gray-600 mb-4">
-                        Rich and strong espresso made from freshly roasted beans.
-                    </p>
-
-                    <div class="flex items-center justify-between">
-
-                        <span class="text-xl font-bold text-amber-700">
-                            $3.50
-                        </span>
-
-                        <button
-                            class="px-5 py-2 bg-amber-700 text-white rounded-full
-                                   hover:bg-amber-800 transition">
-                            Order
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Card 2 -->
-            <div class="bg-amber-50 rounded-3xl overflow-hidden shadow-lg
-                        hover:-translate-y-2 transition duration-300">
-
-                <img
-                    src="https://images.unsplash.com/photo-1572442388796-11668a67e53d"
-                    alt="Cappuccino"
-                    class="w-full h-56 object-cover"
-                >
-
-                <div class="p-6">
-
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                        Cappuccino
-                    </h3>
-
-                    <p class="text-gray-600 mb-4">
-                        Smooth espresso combined with creamy steamed milk.
-                    </p>
-
-                    <div class="flex items-center justify-between">
-
-                        <span class="text-xl font-bold text-amber-700">
-                            $4.50
-                        </span>
-
-                        <button
-                            class="px-5 py-2 bg-amber-700 text-white rounded-full
-                                   hover:bg-amber-800 transition">
-                            Order
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Card 3 -->
-            <div class="bg-amber-50 rounded-3xl overflow-hidden shadow-lg
-                        hover:-translate-y-2 transition duration-300">
-
-                <img
-                    src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd"
-                    alt="Latte"
-                    class="w-full h-56 object-cover"
-                >
-
-                <div class="p-6">
-
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                        Latte
-                    </h3>
-
-                    <p class="text-gray-600 mb-4">
-                        A delicious blend of espresso and silky steamed milk.
-                    </p>
-
-                    <div class="flex items-center justify-between">
-
-                        <span class="text-xl font-bold text-amber-700">
-                            $4.00
-                        </span>
-
-                        <button
-                            class="px-5 py-2 bg-amber-700 text-white rounded-full
-                                   hover:bg-amber-800 transition">
-                            Order
-                        </button>
-
-                    </div>
-
-                </div>
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"
+                    alt="Freshly brewed coffee"
+                    class="relative w-full max-w-lg
+                            h-[450px]
+                            object-cover
+                            rounded-3xl
+                            addEventListener  shadow-2xl
+                            hover:scale-105
+                            transition duration-500">
 
             </div>
 
@@ -262,310 +402,179 @@
     </div>
 
 </section>
-<!-- Features Section -->
-<section class="py-20 px-8 bg-amber-50">
 
-    <div class="max-w-6xl mx-auto">
 
-        <!-- Section Title -->
-        <div class="text-center mb-12">
 
-            <p class="text-amber-700 font-semibold mb-2">
-                Why Choose Us?
-            </p>
+<!-- ================================================== -->
+<!-- POPULAR COFFEE -->
+<!-- ================================================== -->
 
-            <h2 class="text-4xl font-bold text-gray-900">
-                We Make Your Coffee Special
-            </h2>
+<section class="white-section py-20 px-6
+                bg-white transition">
 
-        </div>
+    <div class="max-w-7xl mx-auto">
 
 
-        <!-- Features -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Title -->
 
-            <!-- Feature 1 -->
-            <div class="bg-white p-8 rounded-3xl shadow-lg text-center
-                        hover:-translate-y-2 transition duration-300">
+        <div class="text-center mb-14">
 
-                <div class="text-5xl mb-5">
-                    ☕
-                </div>
+            <p class="text-amber-700
+                        font-semibold mb-2">
 
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    Fresh Coffee
-                </h3>
+            <script>
 
-                <p class="text-gray-600">
-                    We use fresh and high-quality coffee beans
-                    to give you the perfect taste.
-                </p>
+document.addEventListener("DOMContentLoaded", function () {
 
-            </div>
+    // SEARCH
+    const searchButton = document.getElementById("searchButton");
+    const searchSection = document.getElementById("searchSection");
+    const searchInput = document.getElementById("searchInput");
+    const searchSubmit = document.getElementById("searchSubmit");
+    const searchMessage = document.getElementById("searchMessage");
 
+    const coffeeCards = document.querySelectorAll(".coffee-card");
 
-            <!-- Feature 2 -->
-            <div class="bg-white p-8 rounded-3xl shadow-lg text-center
-                        hover:-translate-y-2 transition duration-300">
 
-                <div class="text-5xl mb-5">
-                    ⭐
-                </div>
+    if (searchButton) {
 
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    Premium Quality
-                </h3>
+        searchButton.addEventListener("click", function () {
 
-                <p class="text-gray-600">
-                    Every cup is carefully prepared with
-                    attention to quality and detail.
-                </p>
+            searchSection.classList.toggle("hidden");
 
-            </div>
+            if (!searchSection.classList.contains("hidden")) {
+                searchInput.focus();
+            }
 
+        });
 
-            <!-- Feature 3 -->
-            <div class="bg-white p-8 rounded-3xl shadow-lg text-center
-                        hover:-translate-y-2 transition duration-300">
+    }
 
-                <div class="text-5xl mb-5">
-                    ❤️
-                </div>
 
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    Made With Love
-                </h3>
+    function searchCoffee() {
 
-                <p class="text-gray-600">
-                    Our coffee is prepared with passion
-                    to make every visit special.
-                </p>
+        const value = searchInput.value.toLowerCase().trim();
 
-            </div>
+        let found = false;
 
-        </div>
 
-    </div>
+        coffeeCards.forEach(function (card) {
 
-</section>
-<!-- Testimonials Section -->
-<section class="py-20 px-8 bg-white">
+            const name =
+                card.querySelector("h3").textContent.toLowerCase();
 
-    <div class="max-w-6xl mx-auto">
+            const description =
+                card.querySelector("p").textContent.toLowerCase();
 
-        <!-- Section Title -->
-        <div class="text-center mb-12">
 
-            <p class="text-amber-700 font-semibold mb-2">
-                Customer Reviews
-            </p>
+            if (
+                value === "" ||
+                name.includes(value) ||
+                description.includes(value)
+            ) {
 
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                What Our Customers Say
-            </h2>
+                card.style.display = "";
+                found = true;
 
-            <p class="text-gray-600">
-                We are happy to make every coffee experience special.
-            </p>
+            } else {
 
-        </div>
+                card.style.display = "none";
 
+            }
 
-        <!-- Testimonials -->
-        <div class="grid md:grid-cols-3 gap-8">
+        });
 
-            <!-- Review 1 -->
-            <div class="p-8 bg-amber-50 rounded-3xl shadow-lg
-                        hover:-translate-y-2 transition duration-300">
 
-                <div class="text-amber-500 text-xl mb-4">
-                    ★★★★★
-                </div>
+        if (!found && value !== "") {
 
-                <p class="text-gray-600 leading-relaxed mb-6">
-                    "The coffee was amazing and the atmosphere
-                    was very relaxing. I will definitely come again!"
-                </p>
+            searchMessage.classList.remove("hidden");
 
-                <h3 class="font-bold text-gray-900">
-                    Sarah
-                </h3>
+        } else {
 
-                <p class="text-sm text-gray-500">
-                    Happy Customer
-                </p>
+            searchMessage.classList.add("hidden");
 
-            </div>
+        }
 
+    }
 
-            <!-- Review 2 -->
-            <div class="p-8 bg-amber-50 rounded-3xl shadow-lg
-                        hover:-translate-y-2 transition duration-300">
 
-                <div class="text-amber-500 text-xl mb-4">
-                    ★★★★★
-                </div>
+    if (searchSubmit) {
+        searchSubmit.addEventListener("click", searchCoffee);
+    }
 
-                <p class="text-gray-600 leading-relaxed mb-6">
-                    "Fresh coffee, friendly service, and beautiful
-                    presentation. Highly recommended!"
-                </p>
 
-                <h3 class="font-bold text-gray-900">
-                    Emma
-                </h3>
+    if (searchInput) {
 
-                <p class="text-sm text-gray-500">
-                    Happy Customer
-                </p>
+        searchInput.addEventListener("keydown", function (event) {
 
-            </div>
+            if (event.key === "Enter") {
+                searchCoffee();
+            }
 
+        });
 
-            <!-- Review 3 -->
-            <div class="p-8 bg-amber-50 rounded-3xl shadow-lg
-                        hover:-translate-y-2 transition duration-300">
+    }
 
-                <div class="text-amber-500 text-xl mb-4">
-                    ★★★★★
-                </div>
 
-                <p class="text-gray-600 leading-relaxed mb-6">
-                    "A perfect place to enjoy a delicious cup of coffee
-                    with friends."
-                </p>
 
-                <h3 class="font-bold text-gray-900">
-                    Olivia
-                </h3>
+    // DARK / LIGHT MODE
 
-                <p class="text-sm text-gray-500">
-                    Happy Customer
-                </p>
+    const themeButton =
+        document.getElementById("themeButton");
 
-            </div>
 
-        </div>
+    if (themeButton) {
 
-    </div>
+        if (localStorage.getItem("theme") === "dark") {
 
-</section>
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-12 px-8">
+            document.body.classList.add("dark-mode");
+            themeButton.textContent = "☀️";
 
-    <div class="max-w-6xl mx-auto">
+        }
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-            <!-- About -->
-            <div>
-                <h2 class="text-2xl font-bold text-amber-400 mb-4">
-                    Coffee Shop ☕
-                </h2>
+        themeButton.addEventListener("click", function () {
 
-                <p class="text-gray-400 leading-relaxed">
-                    Fresh coffee, delicious flavors, and a
-                    warm atmosphere made for every coffee lover.
-                </p>
-            </div>
+            document.body.classList.toggle("dark-mode");
 
 
-            <!-- Important Links -->
-            <div>
-                <h3 class="text-lg font-bold mb-4">
-                    Quick Links
-                </h3>
+            if (document.body.classList.contains("dark-mode")) {
 
-                <div class="flex flex-col gap-3">
+                themeButton.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
 
-                    <a href="index.html"
-                       class="text-gray-400 hover:text-amber-400 transition">
-                        Home
-                    </a>
+            } else {
 
-                    <a href="menu.html"
-                       class="text-gray-400 hover:text-amber-400 transition">
-                        Menu
-                    </a>
+                themeButton.textContent = "🌙";
+                localStorage.setItem("theme", "light");
 
-                    <a href="about.html"
-                       class="text-gray-400 hover:text-amber-400 transition">
-                        About
-                    </a>
+            }
 
-                    <a href="contact.html"
-                       class="text-gray-400 hover:text-amber-400 transition">
-                        Contact
-                    </a>
+        });
 
-                </div>
-            </div>
+    }
 
 
-            <!-- Contact -->
-            <div>
-                <h3 class="text-lg font-bold mb-4">
-                    Contact Us
-                </h3>
 
-                <div class="space-y-3 text-gray-400">
+    // MOBILE MENU
 
-                    <p>📍 Coffee Street</p>
+    const menuButton =
+        document.getElementById("menuButton");
 
-                    <p>📞 +123 456 789</p>
+    const mobileMenu =
+        document.getElementById("mobileMenu");
 
-                    <p>✉️ info@coffeeshop.com</p>
 
-                </div>
-            </div>
+    if (menuButton && mobileMenu) {
 
+        menuButton.addEventListener("click", function () {
 
-            <!-- Social -->
-            <div>
-                <h3 class="text-lg font-bold mb-4">
-                    Follow Us
-                </h3>
+            mobileMenu.classList.toggle("show");
 
-                <div class="flex gap-3">
+        });
 
-                    <a href="#"
-                       class="w-10 h-10 flex items-center justify-center
-                              rounded-full bg-gray-800
-                              hover:bg-amber-700 transition">
-                        f
-                    </a>
+    }
 
-                    <a href="#"
-                       class="w-10 h-10 flex items-center justify-center
-                              rounded-full bg-gray-800
-                              hover:bg-amber-700 transition">
-                        📷
-                    </a>
+});
 
-                    <a href="#"
-                       class="w-10 h-10 flex items-center justify-center
-                              rounded-full bg-gray-800
-                              hover:bg-amber-700 transition">
-                        𝕏
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- Copyright -->
-        <div class="border-t border-gray-700 mt-10 pt-6 text-center">
-
-            <p class="text-gray-500 text-sm">
-                © 2026 Coffee Shop. All rights reserved.
-            </p>
-
-        </div>
-
-    </div>
-
-</footer>
-</body>
-</html>
+</script>
