@@ -2,14 +2,16 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Menu - Sleepy Bean</title>
+    <title>Sleepy Bean | Menu</title>
 
     <link rel="stylesheet" href="./src/output.css">
 
     <style>
+
         html {
             scroll-behavior: smooth;
         }
@@ -18,7 +20,8 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Dark Mode */
+        /* ==================== DARK MODE ==================== */
+
         body.dark-mode {
             background-color: #111827;
             color: #f9fafb;
@@ -32,8 +35,9 @@
             background-color: #111827 !important;
         }
 
-        body.dark-mode .card {
+        body.dark-mode .coffee-card {
             background-color: #374151 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
         body.dark-mode .dark-text {
@@ -58,11 +62,27 @@
             border-color: #6b7280;
         }
 
+        body.dark-mode #searchInput::placeholder {
+            color: #9ca3af;
+        }
+
         body.dark-mode footer {
             background-color: #030712 !important;
         }
 
-        /* Mobile Menu */
+        body.dark-mode .category-button {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .category-button.active,
+        body.dark-mode .category-button:hover {
+            background-color: #b45309;
+            color: white;
+        }
+
+        /* ==================== MOBILE MENU ==================== */
+
         #mobileMenu {
             display: none;
         }
@@ -71,80 +91,108 @@
             display: flex;
         }
 
-        /* Category Button */
+        /* ==================== CATEGORY BUTTONS ==================== */
+
+        .category-button {
+            transition: all 0.3s ease;
+        }
+
+        .category-button:hover {
+            transform: translateY(-2px);
+        }
+
         .category-button.active {
             background-color: #b45309;
             color: white;
         }
 
-        /* Product Card */
+        /* ==================== COFFEE CARDS ==================== */
+
         .coffee-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .coffee-card:hover {
             transform: translateY(-8px);
         }
+
+        .coffee-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .coffee-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .coffee-card .img-wrapper {
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+        }
+
     </style>
+
 </head>
 
-<body class="bg-white text-gray-800">
 
-    <!-- ================= NAVBAR ================= -->
+<body class="bg-white text-gray-900">
 
-    <nav class="sticky top-0 z-50 bg-white shadow-md">
 
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<!-- ================================================== -->
+<!-- NAVBAR -->
+<!-- ================================================== -->
+
+<nav class="sticky top-0 z-50 bg-white shadow-md transition">
+
+    <div class="max-w-7xl mx-auto px-6 py-4">
+
+        <div class="flex items-center justify-between">
 
             <!-- Logo -->
             <a href="index.html"
-                class="text-2xl font-bold text-amber-700 hover:text-amber-800 transition">
-                ☕ Sleepy Bean
+               class="text-2xl md:text-3xl font-bold text-amber-800
+                      hover:text-amber-600 transition">
+                Sleepy Bean ☕
             </a>
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-8">
-
-                <a href="index.html"
-                    class="text-gray-700 hover:text-amber-700 transition">
-                    Home
-                </a>
-
-                <a href="menu.html"
-                    class="text-amber-700 font-semibold">
-                    Menu
-                </a>
-
-                <a href="about.html"
-                    class="text-gray-700 hover:text-amber-700 transition">
-                    About
-                </a>
-
-                <a href="contact.html"
-                    class="text-gray-700 hover:text-amber-700 transition">
-                    Contact
-                </a>
-
+                <a href="index.html" class="text-gray-700 hover:text-amber-600 transition">Home</a>
+                <a href="menu.html" class="font-semibold text-amber-700 hover:text-amber-500 transition">Menu</a>
+                <a href="about.html" class="text-gray-700 hover:text-amber-600 transition">About</a>
+                <a href="contact.html" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
             </div>
 
             <!-- Actions -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
 
-                <!-- Search Button -->
-                <button id="searchButton"
-                    class="px-4 py-2 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-200 transition transform hover:scale-105">
-                    🔍 Search
+                <!-- Search -->
+                <button id="searchButton" aria-label="Open search"
+                        class="w-10 h-10 flex items-center justify-center
+                               rounded-full hover:bg-amber-100
+                               transition transform hover:scale-110">
+                    🔍
                 </button>
 
                 <!-- Dark Mode -->
-                <button id="themeButton"
-                    class="px-4 py-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition transform hover:scale-105">
+                <button id="themeButton" aria-label="Toggle dark mode"
+                        class="w-10 h-10 flex items-center justify-center
+                               rounded-full hover:bg-amber-100
+                               transition transform hover:scale-110">
                     🌙
                 </button>
 
-                <!-- Mobile Button -->
-                <button id="mobileButton"
-                    class="md:hidden px-3 py-2 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200 transition">
+                <!-- Mobile Menu -->
+                <button id="menuButton" aria-label="Open menu"
+                        class="md:hidden w-10 h-10 flex items-center
+                               justify-center rounded-full
+                               hover:bg-amber-100 transition">
                     ☰
                 </button>
 
@@ -152,334 +200,792 @@
 
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobileMenu"
-            class="hidden flex-col bg-white border-t border-gray-200 px-6 py-4 gap-4 md:hidden">
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="flex-col gap-4 mt-5 pb-4 md:hidden">
+            <a href="index.html" class="text-gray-700 hover:text-amber-600 transition">Home</a>
+            <a href="menu.html" class="font-semibold text-amber-700 hover:text-amber-500 transition">Menu</a>
+            <a href="about.html" class="text-gray-700 hover:text-amber-600 transition">About</a>
+            <a href="contact.html" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+        </div>
 
-            <a href="index.html"
-                class="text-gray-700 hover:text-amber-700 transition">
-                Home
-            </a>
+    </div>
 
-            <a href="menu.html"
-                class="text-amber-700 font-semibold">
-                Menu
-            </a>
+</nav>
 
-            <a href="about.html"
-                class="text-gray-700 hover:text-amber-700 transition">
-                About
-            </a>
 
-            <a href="contact.html"
-                class="text-gray-700 hover:text-amber-700 transition">
-                Contact
-            </a>
+
+<!-- ================================================== -->
+<!-- SEARCH -->
+<!-- ================================================== -->
+
+<section id="searchSection" class="hidden bg-amber-50 py-6 px-6">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="flex flex-col sm:flex-row gap-3">
+
+            <input id="searchInput" type="text"
+                   placeholder="Search coffee, drinks or desserts..."
+                   class="flex-1 px-5 py-3 rounded-full
+                          border border-amber-300
+                          focus:outline-none focus:ring-2
+                          focus:ring-amber-500 transition">
+
+            <button id="searchSubmit"
+                    class="px-6 py-3 bg-amber-700 text-white
+                           rounded-full hover:bg-amber-800
+                           hover:scale-105 transition">
+                Search
+            </button>
 
         </div>
 
-    </nav>
+        <p id="searchMessage"
+           class="text-center text-amber-700 font-semibold mt-4 hidden">
+            No item found.
+        </p>
+
+    </div>
+
+</section>
 
 
-    <!-- ================= SEARCH SECTION ================= -->
 
-    <section id="searchSection"
-        class="hidden bg-amber-50 py-6 px-6">
+<!-- ================================================== -->
+<!-- MENU HERO -->
+<!-- ================================================== -->
 
-        <div class="max-w-4xl mx-auto">
+<section class="light-section min-h-[55vh] flex items-center
+                bg-amber-50 px-6 py-16 transition">
 
-            <div class="flex flex-col sm:flex-row gap-3">
+    <div class="max-w-7xl mx-auto w-full
+                grid md:grid-cols-2 gap-12 items-center">
 
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="Search for coffee, dessert or drink..."
-                    class="flex-1 px-5 py-3 rounded-xl border border-amber-200 outline-none focus:ring-2 focus:ring-amber-500 transition">
+        <!-- Hero Text -->
+        <div>
 
-                <button id="searchSubmit"
-                    class="px-6 py-3 rounded-xl bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                    Search
-                </button>
-
-            </div>
-
-            <p id="searchMessage"
-                class="hidden mt-4 text-center text-gray-500">
-                No items found.
+            <p class="text-amber-700 font-semibold text-lg mb-4">
+                Our Menu ☕
             </p>
 
-        </div>
-
-    </section>
-
-
-    <!-- ================= HERO ================= -->
-
-    <section class="light-section bg-amber-50 py-20 px-6">
-
-        <div class="max-w-7xl mx-auto text-center">
-
-            <p class="text-amber-700 font-semibold uppercase tracking-wider mb-3">
-                Our Menu
-            </p>
-
-            <h1 class="dark-text text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Choose Your Favorite Coffee
+            <h1 class="dark-text text-5xl md:text-6xl lg:text-7xl
+                       font-bold leading-tight mb-6">
+                Find Your
+                <span class="text-amber-700 block">Perfect Coffee</span>
             </h1>
 
-            <p class="gray-text max-w-2xl mx-auto text-lg text-gray-600">
-                Discover our delicious selection of freshly prepared coffee,
-                cold drinks and sweet desserts made with love.
+            <p class="gray-text text-gray-600 text-lg md:text-xl
+                      leading-relaxed max-w-xl">
+                Explore our delicious selection of freshly brewed coffee,
+                refreshing drinks, and sweet treats made for every coffee lover.
             </p>
+
+            <a href="#menuItems"
+               class="inline-block mt-8 px-7 py-3 bg-amber-700 text-white
+                      rounded-full font-semibold shadow-lg
+                      hover:bg-amber-800 hover:scale-105
+                      transition duration-300">
+                Explore Our Menu ☕
+            </a>
 
         </div>
 
-    </section>
+        <!-- Hero Image -->
+        <div class="flex justify-center">
 
+            <div class="relative w-full max-w-lg">
 
-    <!-- ================= CATEGORY FILTER ================= -->
+                <div class="absolute -inset-4 bg-amber-200 rounded-3xl
+                            blur-2xl opacity-40"></div>
 
-    <section class="white-section bg-white py-10 px-6">
-
-        <div class="max-w-7xl mx-auto">
-
-            <div class="flex flex-wrap justify-center gap-3">
-
-                <button
-                    class="category-button active px-6 py-3 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-700 hover:text-white transition"
-                    data-category="all">
-                    All
-                </button>
-
-                <button
-                    class="category-button px-6 py-3 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-700 hover:text-white transition"
-                    data-category="coffee">
-                    ☕ Coffee
-                </button>
-
-                <button
-                    class="category-button px-6 py-3 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-700 hover:text-white transition"
-                    data-category="cold">
-                    🧊 Cold Drinks
-                </button>
-
-                <button
-                    class="category-button px-6 py-3 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-700 hover:text-white transition"
-                    data-category="dessert">
-                    🍰 Desserts
-                </button>
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85"
+                     alt="Fresh coffee"
+                     class="relative w-full h-[380px] md:h-[450px]
+                            object-cover rounded-3xl shadow-2xl
+                            hover:scale-105 transition duration-500">
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ================= MENU PRODUCTS ================= -->
 
-    <section class="white-section bg-white py-12 px-6">
+<!-- ================================================== -->
+<!-- MENU SECTION -->
+<!-- ================================================== -->
 
-        <div class="max-w-7xl mx-auto">
+<section id="menuItems" class="white-section bg-white py-20 px-6 transition">
 
-            <div id="menuGrid"
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+
+            <p class="text-amber-700 font-semibold mb-2">
+                Explore Our Selection ☕
+            </p>
+
+            <h2 class="dark-text text-4xl md:text-5xl font-bold">
+                Our Menu
+            </h2>
+
+            <p class="gray-text text-gray-600 mt-4 max-w-2xl mx-auto">
+                Choose from our freshly brewed coffees, refreshing cold drinks,
+                and delicious desserts.
+            </p>
+
+        </div>
 
 
-                <!-- Espresso -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="coffee"
-                    data-name="espresso">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=800&q=80"
-                        alt="Espresso"
-                        class="w-full h-56 object-cover">
+        <!-- Categories -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
 
-                    <div class="p-6">
+            <button class="category-button active px-6 py-3 rounded-full
+                           bg-gray-200 text-gray-800 font-semibold
+                           hover:bg-amber-700 hover:text-white"
+                    data-category="all">
+                All
+            </button>
 
-                        <h3 class="dark-text text-2xl font-bold text-gray-900 mb-2">
-                            Espresso
-                        </h3>
+            <button class="category-button px-6 py-3 rounded-full
+                           bg-gray-200 text-gray-800 font-semibold
+                           hover:bg-amber-700 hover:text-white"
+                    data-category="hot">
+                Hot Drinks ☕
+            </button>
 
-                        <p class="gray-text text-gray-600 mb-5">
-                            Rich and strong espresso made from freshly roasted coffee beans.
-                        </p>
+            <button class="category-button px-6 py-3 rounded-full
+                           bg-gray-200 text-gray-800 font-semibold
+                           hover:bg-amber-700 hover:text-white"
+                    data-category="cold">
+                Cold Drinks 🧊
+            </button>
 
-                        <div class="flex items-center justify-between">
+            <button class="category-button px-6 py-3 rounded-full
+                           bg-gray-200 text-gray-800 font-semibold
+                           hover:bg-amber-700 hover:text-white"
+                    data-category="dessert">
+                Desserts 🍰
+            </button>
 
-                            <span class="text-xl font-bold text-amber-700">
-                                $3.50
-                            </span>
+        </div>
 
-                            <button
-                                class="order-button px-5 py-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                                Order
-                            </button>
 
-                        </div>
 
-                    </div>
+        <!-- Coffee Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+                    gap-8" id="coffeeGrid">
 
+
+            <!-- Card 1: Espresso -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="hot">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=600&q=80"
+                         alt="Espresso">
                 </div>
 
+                <div class="p-6 flex flex-col flex-1">
 
-                <!-- Cappuccino -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="coffee"
-                    data-name="cappuccino">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=800&q=80"
-                        alt="Cappuccino"
-                        class="w-full h-56 object-cover">
-
-                    <div class="p-6">
-
-                        <h3 class="dark-text text-2xl font-bold text-gray-900 mb-2">
-                            Cappuccino
-                        </h3>
-
-                        <p class="gray-text text-gray-600 mb-5">
-                            Smooth espresso with steamed milk and creamy foam.
-                        </p>
-
-                        <div class="flex items-center justify-between">
-
-                            <span class="text-xl font-bold text-amber-700">
-                                $4.50
-                            </span>
-
-                            <button
-                                class="order-button px-5 py-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                                Order
-                            </button>
-
-                        </div>
-
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Espresso</h3>
+                        <span class="text-amber-700 font-bold text-lg">$3.50</span>
                     </div>
 
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Rich and intense shot of pure coffee, made from
+                        premium roasted beans.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 2: Cappuccino -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="hot">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80"
+                         alt="Cappuccino">
                 </div>
 
+                <div class="p-6 flex flex-col flex-1">
 
-                <!-- Latte -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="coffee"
-                    data-name="latte">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80"
-                        alt="Latte"
-                        class="w-full h-56 object-cover">
-
-                    <div class="p-6">
-
-                        <h3 class="dark-text text-2xl font-bold text-gray-900 mb-2">
-                            Latte
-                        </h3>
-
-                        <p class="gray-text text-gray-600 mb-5">
-                            Creamy espresso blended with warm steamed milk.
-                        </p>
-
-                        <div class="flex items-center justify-between">
-
-                            <span class="text-xl font-bold text-amber-700">
-                                $4.00
-                            </span>
-
-                            <button
-                                class="order-button px-5 py-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                                Order
-                            </button>
-
-                        </div>
-
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Cappuccino</h3>
+                        <span class="text-amber-700 font-bold text-lg">$4.50</span>
                     </div>
 
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Classic Italian coffee with equal parts espresso,
+                        steamed milk, and foam.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 3: Latte -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="hot">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80"
+                         alt="Latte">
                 </div>
 
+                <div class="p-6 flex flex-col flex-1">
 
-                <!-- Mocha -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="coffee"
-                    data-name="mocha">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=800&q=80"
-                        alt="Mocha"
-                        class="w-full h-56 object-cover">
-
-                    <div class="p-6">
-
-                        <h3 class="dark-text text-2xl font-bold text-gray-900 mb-2">
-                            Mocha
-                        </h3>
-
-                        <p class="gray-text text-gray-600 mb-5">
-                            A delicious combination of espresso, chocolate and milk.
-                        </p>
-
-                        <div class="flex items-center justify-between">
-
-                            <span class="text-xl font-bold text-amber-700">
-                                $4.75
-                            </span>
-
-                            <button
-                                class="order-button px-5 py-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                                Order
-                            </button>
-
-                        </div>
-
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Caffè Latte</h3>
+                        <span class="text-amber-700 font-bold text-lg">$4.75</span>
                     </div>
 
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Smooth and creamy coffee with steamed milk
+                        and a light layer of foam.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 4: Mocha -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="hot">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=600&q=80"
+                         alt="Mocha">
                 </div>
 
+                <div class="p-6 flex flex-col flex-1">
 
-                <!-- Iced Coffee -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="cold"
-                    data-name="iced coffee">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"
-                        alt="Iced Coffee"
-                        class="w-full h-56 object-cover">
-
-                    <div class="p-6">
-
-                        <h3 class="dark-text text-2xl font-bold text-gray-900 mb-2">
-                            Iced Coffee
-                        </h3>
-
-                        <p class="gray-text text-gray-600 mb-5">
-                            Refreshing cold coffee served over ice.
-                        </p>
-
-                        <div class="flex items-center justify-between">
-
-                            <span class="text-xl font-bold text-amber-700">
-                                $4.25
-                            </span>
-
-                            <button
-                                class="order-button px-5 py-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition transform hover:scale-105">
-                                Order
-                            </button>
-
-                        </div>
-
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Mocha</h3>
+                        <span class="text-amber-700 font-bold text-lg">$5.00</span>
                     </div>
 
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Delicious blend of espresso, chocolate,
+                        and steamed milk topped with cream.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 5: Iced Americano -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="cold">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80"
+                         alt="Iced Americano">
                 </div>
 
+                <div class="p-6 flex flex-col flex-1">
 
-                <!-- Cheesecake -->
-                <div class="coffee-card card bg-amber-50 rounded-3xl shadow-lg overflow-hidden"
-                    data-category="dessert"
-                    data-name="cheesecake">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Iced Americano</h3>
+                        <span class="text-amber-700 font-bold text-lg">$4.00</span>
+                    </div>
 
-                    <img
-                        src="https://images.unsplash.com/photo-1565958011703
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Chilled espresso with cold water and ice —
+                        refreshing and bold.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 6: Iced Latte -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="cold">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80"
+                         alt="Iced Latte">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Iced Latte</h3>
+                        <span class="text-amber-700 font-bold text-lg">$5.25</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Cool and creamy espresso with milk
+                        poured over ice — perfect for summer.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 7: Chocolate Cake -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="dessert">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+                         alt="Chocolate Cake">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Chocolate Cake</h3>
+                        <span class="text-amber-700 font-bold text-lg">$6.00</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Moist chocolate cake with rich frosting —
+                        the perfect pairing with coffee.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 8: Croissant -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="dessert">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80"
+                         alt="Croissant">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Butter Croissant</h3>
+                        <span class="text-amber-700 font-bold text-lg">$3.75</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Freshly baked, flaky French croissant
+                        with rich buttery flavor.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 9: Cheesecake -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="dessert">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80"
+                         alt="Cheesecake">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Cheesecake</h3>
+                        <span class="text-amber-700 font-bold text-lg">$5.50</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Creamy New York style cheesecake with
+                        a buttery graham cracker crust.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 10: Hot Chocolate -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="hot">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517578239113-b03992dcdd25?auto=format&fit=crop&w=600&q=80"
+                         alt="Hot Chocolate">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Hot Chocolate</h3>
+                        <span class="text-amber-700 font-bold text-lg">$4.25</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Rich and creamy hot chocolate topped
+                        with whipped cream and cocoa.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 11: Iced Tea -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="cold">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80"
+                         alt="Iced Tea">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Iced Tea</h3>
+                        <span class="text-amber-700 font-bold text-lg">$3.25</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Refreshing cold tea with lemon —
+                        a light and refreshing choice.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+
+            <!-- Card 12: Muffin -->
+            <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                 data-category="dessert">
+
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=600&q=80"
+                         alt="Muffin">
+                </div>
+
+                <div class="p-6 flex flex-col flex-1">
+
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="dark-text text-xl font-bold">Blueberry Muffin</h3>
+                        <span class="text-amber-700 font-bold text-lg">$3.50</span>
+                    </div>
+
+                    <p class="gray-text text-gray-600 text-sm flex-1">
+                        Soft and fluffy muffin loaded with
+                        fresh blueberries.
+                    </p>
+
+                    <button class="mt-4 w-full py-2 bg-amber-700 text-white
+                                   rounded-full font-semibold
+                                   hover:bg-amber-800 hover:scale-105
+                                   transition duration-300">
+                        Add to Order
+                    </button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- FOOTER -->
+<!-- ================================================== -->
+
+<footer class="bg-gray-900 text-gray-300 py-12 px-6 transition">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- About -->
+        <div>
+            <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                Sleepy Bean ☕
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
+                Your cozy coffee shop for fresh brews, warm vibes,
+                and delightful treats. Made with love, served with care.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h4 class="text-lg font-semibold text-white mb-4">
+                Quick Links
+            </h4>
+            <ul class="space-y-2">
+                <li><a href="index.html" class="hover:text-amber-500 transition">Home</a></li>
+                <li><a href="menu.html" class="hover:text-amber-500 transition">Menu</a></li>
+                <li><a href="about.html" class="hover:text-amber-500 transition">About</a></li>
+                <li><a href="contact.html" class="hover:text-amber-500 transition">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+            <h4 class="text-lg font-semibold text-white mb-4">
+                Follow Us
+            </h4>
+            <div class="flex gap-4 text-2xl">
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">📷</a>
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">📘</a>
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">🐦</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-700 text-center text-sm text-gray-500">
+        © 2026 Sleepy Bean. All rights reserved.
+    </div>
+
+</footer>
+
+
+
+<!-- ================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ============ SEARCH ============
+    const searchButton = document.getElementById("searchButton");
+    const searchSection = document.getElementById("searchSection");
+    const searchInput = document.getElementById("searchInput");
+    const searchSubmit = document.getElementById("searchSubmit");
+    const searchMessage = document.getElementById("searchMessage");
+
+    const coffeeCards = document.querySelectorAll(".coffee-card");
+
+
+    if (searchButton) {
+        searchButton.addEventListener("click", function () {
+            searchSection.classList.toggle("hidden");
+            if (!searchSection.classList.contains("hidden")) {
+                searchInput.focus();
+            }
+        });
+    }
+
+
+    function searchCoffee() {
+
+        const value = searchInput.value.toLowerCase().trim();
+        let found = false;
+
+        coffeeCards.forEach(function (card) {
+
+            const name = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+
+            if (value === "" || name.includes(value) || description.includes(value)) {
+                card.style.display = "";
+                found = true;
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+
+        if (!found && value !== "") {
+            searchMessage.classList.remove("hidden");
+        } else {
+            searchMessage.classList.add("hidden");
+        }
+
+    }
+
+
+    if (searchSubmit) {
+        searchSubmit.addEventListener("click", searchCoffee);
+    }
+
+
+    if (searchInput) {
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                searchCoffee();
+            }
+        });
+    }
+
+
+
+    // ============ CATEGORY FILTER ============
+    const categoryButtons = document.querySelectorAll(".category-button");
+
+    categoryButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            // Remove active from all
+            categoryButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            // Add active to clicked
+            button.classList.add("active");
+
+            const category = button.dataset.category;
+
+            // Filter cards
+            coffeeCards.forEach(function (card) {
+                if (category === "all" || card.dataset.category === category) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+        });
+
+    });
+
+
+
+    // ============ DARK / LIGHT MODE ============
+    const themeButton = document.getElementById("themeButton");
+
+    if (themeButton) {
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeButton.textContent = "☀️";
+        }
+
+        themeButton.addEventListener("click", function () {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                themeButton.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                themeButton.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+
+        });
+
+    }
+
+
+
+    // ============ MOBILE MENU ============
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener("click", function () {
+            mobileMenu.classList.toggle("show");
+        });
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

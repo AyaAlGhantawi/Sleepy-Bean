@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleepy Bean | About Us</title>
+
+    <link rel="stylesheet" href="./src/output.css">
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==================== DARK MODE ==================== */
+
+        body.dark-mode {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .light-section {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode .white-section {
+            background-color: #111827 !important;
+        }
+
+        body.dark-mode .value-card {
+            background-color: #374151 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .dark-text {
+            color: #f9fafb !important;
+        }
+
+        body.dark-mode .gray-text {
+            color: #d1d5db !important;
+        }
+
+        body.dark-mode nav {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode #searchSection {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode #searchInput {
+            background-color: #1f2937;
+            color: white;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode #searchInput::placeholder {
+            color: #9ca3af;
+        }
+
+        body.dark-mode footer {
+            background-color: #030712 !important;
+        }
+
+        /* ==================== MOBILE MENU ==================== */
+
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: flex;
+        }
+
+        /* ==================== VALUE CARDS ==================== */
+
+        .value-card {
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* ==================== STAT CARDS ==================== */
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-white text-gray-900">
+
+
+<!-- ================================================== -->
+<!-- NAVBAR -->
+<!-- ================================================== -->
+
+<nav class="sticky top-0 z-50 bg-white shadow-md transition">
+
+    <div class="max-w-7xl mx-auto px-6 py-4">
+
+        <div class="flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="index.html"
+               class="text-2xl md:text-3xl font-bold text-amber-800
+                      hover:text-amber-600 transition">
+                Sleepy Bean ☕
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-gray-700 hover:text-amber-600 transition">Home</a>
+                <a href="menu.html" class="text-gray-700 hover:text-amber-600 transition">Menu</a>
+                <a href="about.html" class="font-semibold text-amber-700 hover:text-amber-500 transition">About</a>
+                <a href="contact.html" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+
+                <button id="searchButton" aria-label="Open search"
+                        class="w-10 h-10 flex items-center justify-center
+                               rounded-full hover:bg-amber-100
+                               transition transform hover:scale-110">
+                    🔍
+                </button>
+
+                <button id="themeButton" aria-label="Toggle dark mode"
+                        class="w-10 h-10 flex items-center justify-center
+                               rounded-full hover:bg-amber-100
+                               transition transform hover:scale-110">
+                    🌙
+                </button>
+
+                <button id="menuButton" aria-label="Open menu"
+                        class="md:hidden w-10 h-10 flex items-center
+                               justify-center rounded-full
+                               hover:bg-amber-100 transition">
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="flex-col gap-4 mt-5 pb-4 md:hidden">
+            <a href="index.html" class="text-gray-700 hover:text-amber-600 transition">Home</a>
+            <a href="menu.html" class="text-gray-700 hover:text-amber-600 transition">Menu</a>
+            <a href="about.html" class="font-semibold text-amber-700 hover:text-amber-500 transition">About</a>
+            <a href="contact.html" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================================== -->
+<!-- SEARCH -->
+<!-- ================================================== -->
+
+<section id="searchSection" class="hidden bg-amber-50 py-6 px-6">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="flex flex-col sm:flex-row gap-3">
+
+            <input id="searchInput" type="text"
+                   placeholder="Search..."
+                   class="flex-1 px-5 py-3 rounded-full
+                          border border-amber-300
+                          focus:outline-none focus:ring-2
+                          focus:ring-amber-500 transition">
+
+            <button id="searchSubmit"
+                    class="px-6 py-3 bg-amber-700 text-white
+                           rounded-full hover:bg-amber-800
+                           hover:scale-105 transition">
+                Search
+            </button>
+
+        </div>
+
+        <p id="searchMessage"
+           class="text-center text-amber-700 font-semibold mt-4 hidden">
+            No item found.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- ABOUT HERO -->
+<!-- ================================================== -->
+
+<section class="light-section min-h-[55vh] flex items-center
+                bg-amber-50 px-6 py-16 transition">
+
+    <div class="max-w-7xl mx-auto w-full
+                grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Hero Text -->
+        <div>
+
+            <p class="text-amber-700 font-semibold text-lg mb-4">
+                About Us ☕
+            </p>
+
+            <h1 class="dark-text text-5xl md:text-6xl lg:text-7xl
+                       font-bold leading-tight mb-6">
+                Our Story of
+                <span class="text-amber-700 block">Coffee & Passion</span>
+            </h1>
+
+            <p class="gray-text text-gray-600 text-lg md:text-xl
+                      leading-relaxed max-w-xl">
+                From a small dream to a cozy corner loved by our community,
+                Sleepy Bean is where every cup tells a story of passion,
+                quality, and warmth.
+            </p>
+
+        </div>
+
+        <!-- Hero Image -->
+        <div class="flex justify-center">
+
+            <div class="relative w-full max-w-lg">
+
+                <div class="absolute -inset-4 bg-amber-200 rounded-3xl
+                            blur-2xl opacity-40"></div>
+
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85"
+                     alt="Coffee shop interior"
+                     class="relative w-full h-[380px] md:h-[450px]
+                            object-cover rounded-3xl shadow-2xl
+                            hover:scale-105 transition duration-500">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- OUR STORY -->
+<!-- ================================================== -->
+
+<section class="white-section bg-white py-20 px-6 transition">
+
+    <div class="max-w-5xl mx-auto text-center">
+
+        <p class="text-amber-700 font-semibold mb-2">
+            Our Journey
+        </p>
+
+        <h2 class="dark-text text-4xl md:text-5xl font-bold mb-6">
+            From Bean to Cup
+        </h2>
+
+        <p class="gray-text text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-6">
+            Sleepy Bean started with a simple idea: to create a place where
+            people can slow down, enjoy a perfect cup of coffee, and feel at home.
+            We carefully select our beans, roast them with love, and craft each
+            drink to bring out the best flavors.
+        </p>
+
+        <p class="gray-text text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
+            Whether you're here for a morning boost or an afternoon break,
+            we're proud to be part of your day.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- OUR VALUES -->
+<!-- ================================================== -->
+
+<section class="light-section bg-amber-50 py-20 px-6 transition">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-12">
+
+            <p class="text-amber-700 font-semibold mb-2">
+                What We Believe In
+            </p>
+
+            <h2 class="dark-text text-4xl md:text-5xl font-bold">
+                Our Values
+            </h2>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Value 1: Quality -->
+            <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center">
+
+                <div class="text-5xl mb-4">☕</div>
+
+                <h3 class="dark-text text-2xl font-bold mb-3">
+                    Quality First
+                </h3>
+
+                <p class="gray-text text-gray-600 leading-relaxed">
+                    We source only the finest beans and craft every cup with care
+                    and precision.
+                </p>
+
+            </div>
+
+            <!-- Value 2: Community -->
+            <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center">
+
+                <div class="text-5xl mb-4">🤝</div>
+
+                <h3 class="dark-text text-2xl font-bold mb-3">
+                    Community
+                </h3>
+
+                <p class="gray-text text-gray-600 leading-relaxed">
+                    We're more than a coffee shop — we're a gathering place
+                    for friends, ideas, and moments.
+                </p>
+
+            </div>
+
+            <!-- Value 3: Sustainability -->
+            <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center">
+
+                <div class="text-5xl mb-4">🌱</div>
+
+                <h3 class="dark-text text-2xl font-bold mb-3">
+                    Sustainability
+                </h3>
+
+                <p class="gray-text text-gray-600 leading-relaxed">
+                    We care about our planet and choose eco-friendly practices
+                    at every step.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- STATS -->
+<!-- ================================================== -->
+
+<section class="white-section bg-white py-20 px-6 transition">
+
+    <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-12">
+
+            <h2 class="dark-text text-4xl md:text-5xl font-bold">
+                By The Numbers
+            </h2>
+
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <div class="stat-card text-center p-6 rounded-2xl bg-amber-50 shadow-md">
+                <div class="text-amber-700 text-5xl font-bold mb-2">5+</div>
+                <p class="gray-text text-gray-600 font-semibold">Years of Experience</p>
+            </div>
+
+            <div class="stat-card text-center p-6 rounded-2xl bg-amber-50 shadow-md">
+                <div class="text-amber-700 text-5xl font-bold mb-2">50+</div>
+                <p class="gray-text text-gray-600 font-semibold">Coffee Blends</p>
+            </div>
+
+            <div class="stat-card text-center p-6 rounded-2xl bg-amber-50 shadow-md">
+                <div class="text-amber-700 text-5xl font-bold mb-2">10K</div>
+                <p class="gray-text text-gray-600 font-semibold">Happy Customers</p>
+            </div>
+
+            <div class="stat-card text-center p-6 rounded-2xl bg-amber-50 shadow-md">
+                <div class="text-amber-700 text-5xl font-bold mb-2">100%</div>
+                <p class="gray-text text-gray-600 font-semibold">Fresh Beans</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- CALL TO ACTION -->
+<!-- ================================================== -->
+
+<section class="light-section bg-amber-50 py-20 px-6 transition">
+
+    <div class="max-w-4xl mx-auto text-center">
+
+        <h2 class="dark-text text-4xl md:text-5xl font-bold mb-6">
+            Come Visit Us ☕
+        </h2>
+
+        <p class="gray-text text-gray-600 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            We'd love to share a cup of coffee with you.
+            Stop by and experience the Sleepy Bean difference.
+        </p>
+
+        <a href="menu.html"
+           class="inline-block px-8 py-4 bg-amber-700 text-white
+                  rounded-full font-semibold shadow-lg
+                  hover:bg-amber-800 hover:scale-105
+                  transition duration-300">
+            Explore Our Menu ☕
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- FOOTER -->
+<!-- ================================================== -->
+
+<footer class="bg-gray-900 text-gray-300 py-12 px-6 transition">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <div>
+            <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                Sleepy Bean ☕
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
+                Your cozy coffee shop for fresh brews, warm vibes,
+                and delightful treats. Made with love, served with care.
+            </p>
+        </div>
+
+        <div>
+            <h4 class="text-lg font-semibold text-white mb-4">
+                Quick Links
+            </h4>
+            <ul class="space-y-2">
+                <li><a href="index.html" class="hover:text-amber-500 transition">Home</a></li>
+                <li><a href="menu.html" class="hover:text-amber-500 transition">Menu</a></li>
+                <li><a href="about.html" class="hover:text-amber-500 transition">About</a></li>
+                <li><a href="contact.html" class="hover:text-amber-500 transition">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-lg font-semibold text-white mb-4">
+                Follow Us
+            </h4>
+            <div class="flex gap-4 text-2xl">
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">📷</a>
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">📘</a>
+                <a href="#" class="hover:text-amber-500 transition hover:scale-110">🐦</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-700 text-center text-sm text-gray-500">
+        © 2026 Sleepy Bean. All rights reserved.
+    </div>
+
+</footer>
+
+
+
+<!-- ================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ============ SEARCH ============
+    const searchButton = document.getElementById("searchButton");
+    const searchSection = document.getElementById("searchSection");
+    const searchInput = document.getElementById("searchInput");
+    const searchSubmit = document.getElementById("searchSubmit");
+    const searchMessage = document.getElementById("searchMessage");
+
+
+    if (searchButton) {
+        searchButton.addEventListener("click", function () {
+            searchSection.classList.toggle("hidden");
+            if (!searchSection.classList.contains("hidden")) {
+                searchInput.focus();
+            }
+        });
+    }
+
+
+    if (searchSubmit) {
+        searchSubmit.addEventListener("click", function () {
+            const value = searchInput.value.trim();
+            if (value !== "") {
+                searchMessage.classList.remove("hidden");
+                searchMessage.textContent = "Search is available on the Menu page.";
+            }
+        });
+    }
+
+
+    // ============ DARK / LIGHT MODE ============
+    const themeButton = document.getElementById("themeButton");
+
+    if (themeButton) {
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeButton.textContent = "☀️";
+        }
+
+        themeButton.addEventListener("click", function () {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                themeButton.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                themeButton.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+
+        });
+
+    }
+
+
+    // ============ MOBILE MENU ============
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener("click", function () {
+            mobileMenu.classList.toggle("show");
+        });
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>
