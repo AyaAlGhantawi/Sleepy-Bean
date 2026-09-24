@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleepy Bean | Menu</title>
+
+    <link rel="stylesheet" href="./src/output.css">
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==================== DARK MODE ==================== */
+
+        body.dark-mode {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .light-section {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode .white-section {
+            background-color: #111827 !important;
+        }
+
+        body.dark-mode .card {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode .dark-text {
+            color: #f9fafb !important;
+        }
+
+        body.dark-mode .gray-text {
+            color: #d1d5db !important;
+        }
+
+        body.dark-mode nav {
+            background-color: #1f2937 !important;
+        }
+
+        body.dark-mode #searchSection {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode #searchInput {
+            background-color: #1f2937;
+            color: white;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode footer {
+            background-color: #030712 !important;
+        }
+
+        /* ==================== MOBILE MENU ==================== */
+
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: flex;
+        }
+
+        /* ==================== CATEGORY BUTTON ==================== */
+
+        .category-button.active {
+            background-color: #b45309;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-white text-gray-900">
+
+
+<!-- ================================================== -->
+<!-- NAVBAR -->
+<!-- ================================================== -->
+
+<nav class="sticky top-0 z-50 bg-white shadow-md transition">
+
+    <div class="max-w-7xl mx-auto px-6 py-4">
+
+        <div class="flex items-center justify-between">
+
+            <!-- Logo -->
+
+            <a href="index.html"
+               class="text-2xl md:text-3xl font-bold text-amber-800
+                      hover:text-amber-600 transition">
+
+                Sleepy Bean ☕
+
+            </a>
+
+
+            <!-- Desktop Navigation -->
+
+            <div class="hidden md:flex items-center gap-8">
+
+                <a href="index.html"
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    Home
+
+                </a>
+
+                <a href="menu.html"
+                   class="font-semibold text-amber-700
+                          hover:text-amber-500 transition">
+
+                    Menu
+
+                </a>
+
+                <a href="about.html"
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    About
+
+                </a>
+
+                <a href="contact.html"
+                   class="text-gray-700 hover:text-amber-600 transition">
+
+                    Contact
+
+                </a>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="flex items-center gap-2">
+
+                <!-- Search -->
+
+                <button
+                    id="searchButton"
+                    aria-label="Open search"
+                    class="w-10 h-10 flex items-center justify-center
+                           rounded-full hover:bg-amber-100
+                           transition transform hover:scale-110">
+
+                    🔍
+
+                </button>
+
+
+                <!-- Dark Mode -->
+
+                <button
+                    id="themeButton"
+                    aria-label="Toggle dark mode"
+                    class="w-10 h-10 flex items-center justify-center
+                           rounded-full hover:bg-amber-100
+                           transition transform hover:scale-110">
+
+                    🌙
+
+                </button>
+
+
+                <!-- Mobile Menu -->
+
+                <button
+                    id="menuButton"
+                    aria-label="Open menu"
+                    class="md:hidden w-10 h-10 flex items-center
+                           justify-center rounded-full
+                           hover:bg-amber-100 transition">
+
+                    ☰
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Mobile Navigation -->
+
+        <div id="mobileMenu"
+             class="flex-col gap-4 mt-5 pb-4 md:hidden">
+
+            <a href="index.html"
+               class="text-gray-700 hover:text-amber-600 transition">
+
+                Home
+
+            </a>
+
+            <a href="menu.html"
+               class="font-semibold text-amber-700
+                      hover:text-amber-500 transition">
+
+                Menu
+
+            </a>
+
+            <a href="about.html"
+               class="text-gray-700 hover:text-amber-600 transition">
+
+                About
+
+            </a>
+
+            <a href="contact.html"
+               class="text-gray-700 hover:text-amber-600 transition">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================================== -->
+<!-- SEARCH -->
+<!-- ================================================== -->
+
+<section id="searchSection"
+         class="hidden bg-amber-50 py-6 px-6">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="flex flex-col sm:flex-row gap-3">
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search coffee..."
+                class="flex-1 px-5 py-3 rounded-full
+                       border border-amber-300
+                       focus:outline-none
+                       focus:ring-2
+                       focus:ring-amber-500">
+
+            <button
+                id="searchSubmit"
+                class="px-6 py-3 bg-amber-700
+                       text-white rounded-full
+                       hover:bg-amber-800
+                       hover:scale-105
+                       transition">
+
+                Search
+
+            </button>
+
+        </div>
+
+        <p id="searchMessage"
+           class="text-center text-amber-700
+                  font-semibold mt-4 hidden">
+
+            No coffee found.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- MENU HERO -->
+<!-- ================================================== -->
+
+<section class="light-section min-h-[55vh]
+                flex items-center
+                bg-amber-50 px-6 py-16 transition">
+
+    <div class="max-w-7xl mx-auto w-full text-center">
+
+        <p class="text-amber-700 font-semibold
+                  text-lg mb-4">
+
+            Our Menu ☕
+
+        </p>
+
+
+        <h1 class="dark-text text-5xl
+                   md:text-6xl lg:text-7xl
+                   font-bold leading-tight mb-6">
+
+            Choose Your
+
+            <span class="text-amber-700">
+                Favorite Coffee
+            </span>
+
+        </h1>
+
+
+        <p class="gray-text text-gray-600
+                  text-lg md:text-xl
+                  leading-relaxed
+                  max-w-2xl mx-auto">
+
+            Discover our delicious selection of
+            freshly brewed coffee, sweet desserts,
+            and refreshing drinks.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- CATEGORIES -->
+<!-- ================================================== -->
+
+<section class="white-section py-10 px-6
+                bg-white transition">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex flex-wrap
+                    justify-center gap-3">
+
+            <button
+                class="category-button active
+                       px-6 py-3 rounded-full
+                       border border-amber-700
+                       text-amber-700
+                       font-semibold
+                       hover:bg-amber-700
+                       hover:text-white
+                       transition"
+                data-category="all">
+
+                All
+
+            </button>
+
+
+            <button
+                class="category-button
+                       px-6 py-3 rounded-full
+                       border border-amber-700
+                       text-amber-700
+                       font-semibold
+                       hover:bg-amber-700
+                       hover:text-white
+                       transition"
+                data-category="coffee">
+
+                Coffee
+
+            </button>
+
+
+            <button
+                class="category-button
+                       px-6 py-3 rounded-full
+                       border border-amber-700
+                       text-amber-700
+                       font-semibold
+                       hover:bg-amber-700
+                       hover:text-white
+                       transition"
+                data-category="dessert">
+
+                Desserts
+
+            </button>
+
+
+            <button
+                class="category-button
+                       px-6 py-3 rounded-full
+                       border border-amber-700
+                       text-amber-700
+                       font-semibold
+                       hover:bg-amber-700
+                       hover:text-white
+                       transition"
+                data-category="cold">
+
+                Cold Drinks
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- MENU PRODUCTS -->
+<!-- ================================================== -->
+
+<section class="white-section py-20 px-6
+                bg-white transition">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Title -->
+
+        <div class="text-center mb-14">
+
+            <p class="text-amber-700
+                      font-semibold mb-2">
+
+                OUR PRODUCTS
+
+            </p>
+
+            <h2 class="dark-text text-4xl
+                       md:text-5xl font-bold">
+
+                Popular Choices
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- Products Grid -->
+
+        <div id="productsGrid"
+             class="grid grid-cols-1
+                    sm:grid-cols-2
+                    lg:grid-cols-3
+                    gap-8">
+
+
+            <!-- ================= ESPRESSO ================= -->
+
+            <div class="coffee-card card
+                        bg-amber-50
+                        rounded-3xl
+                        overflow-hidden
+                        shadow-lg
+                        hover:shadow-2xl
+                        hover:-translate-y-2
+                        transition duration-300"
+                 data-category="coffee"
+                 data-name="espresso">
+
+                <img
+                    src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=900&q=80"
+                    alt="Espresso"
+                    class="w-full h-64 object-cover">
+
+                <div class="p-6">
+
+                    <h3 class="dark-text text-2xl
+                               font-bold mb-3">
+
+                        Espresso
+
+                    </h3>
+
+                    <p class="gray-text text-gray-600
+                              leading-relaxed mb-5">
+
+                        Rich and strong espresso made
+                        from freshly roasted coffee beans.
+
+                    </p>
+
+                    <div class="flex items-center
+                                justify-between">
+
+                        <span class="text-xl font-bold
+                                     text-amber-700">
+
+                            $3.50
+
+                        </span>
+
+                        <button
+                            class="orderButton
+                                   px-5 py-2
+                                   bg-amber-700
+                                   text-white
+                                   rounded-full
+                                   hover:bg-amber-800
+                                   hover:scale-105
+                                   transition">
+
+                            Order
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= CAPPUCCINO ================= -->
+
+            <div class="coffee-card card
+                        bg-amber-50
+                        rounded-3xl
+                        overflow-hidden
+                        shadow-lg
+                        hover:shadow-2xl
+                        hover:-translate-y-2
+                        transition duration-300"
+                 data-category="coffee"
+                 data-name="cappuccino">
+
+                <img
+                    src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=900&q=80"
+                    alt="Cappuccino"
+                    class="w-full h-64 object-cover">
+
+                <div class="p-6">
+
+                    <h3 class="dark-text text-2xl
+                               font-bold mb-3">
+
+                        Cappuccino
+
+                    </h3>
+
+                    <p class="gray-text text-gray-600
+                              leading-relaxed mb-5">
+
+                        Smooth espresso topped with
+                        creamy steamed milk and soft foam.
+
+                    </p>
+
+                    <div class="flex items-center
+                                justify-between">
+
+                        <span class="text-xl font-bold
+                                     text-amber-700">
+
+                            $4.50
+
+                        </span>
+
+                        <button
+                            class="orderButton
+                                   px-5 py-2
+                                   bg-amber-700
+                                   text-white
+                                   rounded-full
+                                   hover:bg-amber-800
+                                   hover:scale-105
+                                   transition">
+
+                            Order
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= LATTE ================= -->
+
+            <div class="coffee-card card
+                        bg-amber-50
+                        rounded-3xl
+                        overflow-hidden
+                        shadow-lg
+                        hover:shadow-2xl
+                        hover:-translate-y-2
+                        transition duration-300"
+                 data-category="coffee"
+                 data-name="latte">
+
+                <img
+                    src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=80"
+                    alt="Latte"
+                    class="w-full h-64 object-cover">
+
+                <div class="p-6">
+
+                    <h3 class="dark-text text-2xl
+                               font-bold mb-3">
+
+                        Latte
+
+                    </h3>
+
+                    <p class="gray-text text-gray-600
+                              leading-relaxed mb-5">
+
+                        A creamy combination of espresso
+                        and steamed milk.
+
+                    </p>
+
+                    <div class="flex items-center
+                                justify-between">
+
+                        <span class="text-xl font-bold
+                                     text-amber-700
